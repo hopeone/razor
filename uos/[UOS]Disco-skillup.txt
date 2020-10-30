@@ -1,0 +1,32 @@
+for 9999
+  pause 1000
+  useonce 0xe9d
+  usetype 0xe9d
+  createtimer 'CCWW'
+  settimer 'CCDWW' 0
+  for 23
+    usetype 0xe9d  // 사용 악기 object type 확인하시어 올리시기 바랍니다.
+    useskill 'Discordance'
+    waitfortarget 5000
+    target usetype 0xe9d
+    getenemy 'murderer''grey''innocent' 'criminal'
+    if targetexists 'harmful' and inrange 'enemy' 10
+      target! 'enemy'
+    endif
+    if targetexists 'server' and inrange 'enemy' 10
+      target! 'enemy'
+    endif
+    pause 2000
+    if timer 'CCWW' > 9000  // 대상의 개체 수 , 대상의 바딩 난이도에 따라서 조절할 것!
+      cast "Invisibility"
+      waitfortarget 15000
+      target! 'self'
+      pause 18000
+      settimer 'CCWW' 0
+    endif
+  endfor
+  cast "Invisibility"
+  waitfortarget 15000
+  target! 'self'
+  pause 18000
+endfor
