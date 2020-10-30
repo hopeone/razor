@@ -1,0 +1,129 @@
+if not @findobject 'TreeBookOne'
+  promptalias 'TreeBookOne'
+endif
+if not @findobject 'TreeBookTwo'
+  promptalias 'TreeBookTwo'
+endif
+if not @findobject 'HomeLumber'
+  promptalias 'HomeLumber'
+endif
+if not listexists 'TreeBook'
+  createlist 'TreeBook'
+  pushlist 'TreeBook' 'TreeBookOne'
+  pushlist 'TreeBook' 'TreeBookTwo'
+endif
+if not listexists 'Runes'
+  createlist 'Runes'
+  pushlist 'Runes' 50
+  pushlist 'Runes' 51
+  pushlist 'Runes' 52
+  pushlist 'Runes' 53
+  pushlist 'Runes' 54
+  pushlist 'Runes' 55
+  pushlist 'Runes' 56
+  pushlist 'Runes' 57
+  pushlist 'Runes' 58
+  pushlist 'Runes' 59
+  pushlist 'Runes' 60
+  pushlist 'Runes' 61
+  pushlist 'Runes' 62
+  pushlist 'Runes' 63
+  pushlist 'Runes' 64
+  pushlist 'Runes' 65
+endif
+for 0 to 'TreeBook'
+  for 0 to 'Runes'
+    pause 500
+    clearjournal
+    pause 500
+    useobject TreeBook[]
+    waitforgump 0x59 5000
+    replygump 0x59 Runes[]
+    //tells you which rune you are on, see runelist above
+    sysmsg 'Rune' 33
+    sysmsg Runes[] 33
+    pause 3000
+    //equips axe if it's not SC
+    dress 'axe'
+    pause 2000
+    while organizing
+      pause 5000
+    endwhile
+    if not @findobject 'lefthand'
+      //change type to your axe
+      if findtype 0xf43 0 'backpack'
+        setalias 'axe' 'found'
+        equipitem 0x410a9d80 2
+      endif
+    endif
+    if @injournal 'LeftHand'
+      dress 'axe'
+    endif
+    while not @injournal 'enough wood here'
+      pause 300
+      //chop logs to boards
+      if @findtype 0x1bdd 'any' 'backpack'
+        useobject 'LeftHand'
+        waitfortarget 1000
+        target! 'found'
+      else
+        //chop trees
+        useobject 'LeftHand'
+        waitfortarget 1000
+        targettileoffset 0 -1 0
+      endif
+      while @findtype 0x1bdd 'any' 'backpack'
+        useobject 'LeftHand'
+        waitfortarget 1000
+        target! 'found'
+        pause 500
+      endwhile
+      // Change this if your getting overweight, Subtract 25  from your max weight.
+      if weight > 430
+        //make remaining logs boards
+        while @findtype 0x1bdd 'any' 'backpack'
+          useobject 'LeftHand'
+          waitfortarget 1000
+          target! 'found'
+          pause 500
+        endwhile
+        //recall home
+        useobject 0x40040ab3
+        waitforgump 0x59 15000
+        replygump 0x59 50
+        pause 3000
+        //unload
+        organizer 'Boards'
+        while organizing
+          pause 2000
+        endwhile
+        pause 2000
+        //시약 보급
+        useobject 0x4001dec1 //시약셋 상자 열기
+        pause 1000
+        organizer 'RecallRegent'
+        //go back to where you were
+        pause 4000
+        useobject TreeBook[]
+        waitforgump 0x59 5000
+        replygump 0x59 Runes[]
+        pause 3000
+        //re-equip axe if needed
+        if not @findobject 'lefthand'
+          equipitem 0x410a9d80 2
+          dress 'axe'
+          pause 1000
+        endif
+      endif
+      if @injournal 'use an axe'
+        break
+      endif
+      //마나 재생
+      if mana < 20
+        useskill 'meditation'
+        while mana < maxmana
+        endwhile
+      endif
+    endwhile
+  endfor
+endfor
