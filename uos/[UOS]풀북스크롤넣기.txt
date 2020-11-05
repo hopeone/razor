@@ -1,0 +1,129 @@
+@setalias 'dropscroll' 0x400014cc
+movetype 0x3196 'backpack' 'dropscroll' (0 0 0) 'any'
+movetype 0x1f2d 'backpack' 'dropscroll' (0 0 0) 'any'// Reactive Armor
+pause 1000
+movetype 0x1f2e  'backpack' 'dropscroll' (0 0 0) 'any'// Clumsy
+pause 1000
+movetype 0x1f2f  'backpack' 'dropscroll' (0 0 0) 'any'// Create Food
+pause 1000
+movetype 0x1f30  'backpack' 'dropscroll' (0 0 0) 'any'// Feeblemind
+pause 1000
+movetype 0x1f31  'backpack' 'dropscroll' (0 0 0) 'any'// Heal
+pause 1000
+movetype 0x1f32  'backpack' 'dropscroll' (0 0 0) 'any'// Magic Arrow
+pause 1000
+movetype 0x1f33  'backpack' 'dropscroll' (0 0 0) 'any'// Night Sight
+pause 1000
+movetype 0x1f34  'backpack' 'dropscroll' (0 0 0) 'any'// Weaken
+pause 1000
+movetype 0x1f35  'backpack' 'dropscroll' (0 0 0) 'any'// Agility
+pause 1000
+movetype 0x1f36  'backpack' 'dropscroll' (0 0 0) 'any'// Cunning
+pause 1000
+movetype 0x1f37  'backpack' 'dropscroll' (0 0 0) 'any'// Cure
+pause 1000
+movetype 0x1f38  'backpack' 'dropscroll' (0 0 0) 'any'// Harm
+pause 1000
+movetype 0x1f39  'backpack' 'dropscroll' (0 0 0) 'any'// Magic Trap
+pause 1000
+movetype 0x1f3a  'backpack' 'dropscroll' (0 0 0) 'any'// Magic Untrap
+pause 1000
+movetype 0x1f3b  'backpack' 'dropscroll' (0 0 0) 'any'// Protection
+pause 1000
+movetype 0x1f3c  'backpack' 'dropscroll' (0 0 0) 'any'// Strength
+pause 1000
+movetype 0x1f3d  'backpack' 'dropscroll' (0 0 0) 'any'// Bless
+pause 1000
+movetype 0x1f3e  'backpack' 'dropscroll' (0 0 0) 'any'// Fireball
+pause 1000
+movetype 0x1f3f  'backpack' 'dropscroll' (0 0 0) 'any'// Magic Lock
+pause 1000
+movetype 0x1f40  'backpack' 'dropscroll' (0 0 0) 'any'// Poison
+pause 1000
+movetype 0x1f41  'backpack' 'dropscroll' (0 0 0) 'any'// Telekinesis
+pause 1000
+movetype 0x1f42  'backpack' 'dropscroll' (0 0 0) 'any'// Teleport
+pause 1000
+movetype 0x1f43  'backpack' 'dropscroll' (0 0 0) 'any'// Unlock
+pause 1000
+movetype 0x1f44  'backpack' 'dropscroll' (0 0 0) 'any'// Wall of Stone
+pause 1000
+movetype 0x1f45  'backpack' 'dropscroll' (0 0 0) 'any'// Arch Cure
+pause 1000
+movetype 0x1f46  'backpack' 'dropscroll' (0 0 0) 'any'// Arch Protection
+pause 1000
+movetype 0x1f47  'backpack' 'dropscroll' (0 0 0) 'any'// Curse
+pause 1000
+movetype 0x1f48  'backpack' 'dropscroll' (0 0 0) 'any'// Fire Field
+pause 1000
+movetype 0x1f49  'backpack' 'dropscroll' (0 0 0) 'any'// Greater Heal
+pause 1000
+movetype 0x1f4a  'backpack' 'dropscroll' (0 0 0) 'any'// Lightning
+pause 1000
+movetype 0x1f4b  'backpack' 'dropscroll' (0 0 0) 'any'// Mana Drain
+pause 1000
+movetype 0x1f4c  'backpack' 'dropscroll' (0 0 0) 'any'// Recall
+pause 1000
+movetype 0x1f4d  'backpack' 'dropscroll' (0 0 0) 'any'// Blade Spirit
+pause 1000
+movetype 0x1f4e  'backpack' 'dropscroll' (0 0 0) 'any'// Dispel Field
+pause 1000
+movetype 0x1f4f  'backpack' 'dropscroll' (0 0 0) 'any'// Incognito
+pause 1000
+movetype 0x1f50  'backpack' 'dropscroll' (0 0 0) 'any'// Magic Reflection
+pause 1000
+movetype 0x1f51  'backpack' 'dropscroll' (0 0 0) 'any'// Mind Blast
+pause 1000
+movetype 0x1f52  'backpack' 'dropscroll' (0 0 0) 'any'// Paralyze
+pause 1000
+movetype 0x1f53  'backpack' 'dropscroll' (0 0 0) 'any'// Poison Field
+pause 1000
+movetype 0x1f54  'backpack' 'dropscroll' (0 0 0) 'any'// Summon Creature
+pause 1000
+movetype 0x1f55  'backpack' 'dropscroll' (0 0 0) 'any'// Dispel
+pause 1000
+movetype 0x1f56  'backpack' 'dropscroll' (0 0 0) 'any'// Energy Bolt
+pause 1000
+movetype 0x1f57  'backpack' 'dropscroll' (0 0 0) 'any'// Explosion
+pause 1000
+movetype 0x1f58  'backpack' 'dropscroll' (0 0 0) 'any'// Invisibility
+pause 1000
+movetype 0x1f59  'backpack' 'dropscroll' (0 0 0) 'any'// Mark
+pause 1000
+movetype 0x1f5a  'backpack' 'dropscroll' (0 0 0) 'any'// Mass Curse
+pause 1000
+movetype 0x1f5b  'backpack' 'dropscroll' (0 0 0) 'any'// Paralyze Field
+pause 1000
+movetype 0x1f5c  'backpack' 'dropscroll' (0 0 0) 'any'// Reveal
+pause 1000
+movetype 0x1f5d  'backpack' 'dropscroll' (0 0 0) 'any'// Chain Lightning
+pause 1000
+movetype 0x1f5e  'backpack' 'dropscroll' (0 0 0) 'any'// Energy Field
+pause 1000
+movetype 0x1f5f  'backpack' 'dropscroll' (0 0 0) 'any'// Flamestrike
+pause 1000
+movetype 0x1f60  'backpack' 'dropscroll' (0 0 0) 'any'// Gate Travel
+pause 1000
+movetype 0x1f61  'backpack' 'dropscroll' (0 0 0) 'any'// Mana Vampire
+pause 1000
+movetype 0x1f62  'backpack' 'dropscroll' (0 0 0) 'any'// Mass Dispel
+pause 1000
+movetype 0x1f63  'backpack' 'dropscroll' (0 0 0) 'any'// Meteor Swarm
+pause 1000
+movetype 0x1f64  'backpack' 'dropscroll' (0 0 0) 'any'// Polymorph
+pause 1000
+movetype 0x1f65  'backpack' 'dropscroll' (0 0 0) 'any'// Earthquake
+pause 1000
+movetype 0x1f66  'backpack' 'dropscroll' (0 0 0) 'any'// Energy Vortex
+pause 1000
+movetype 0x1f67  'backpack' 'dropscroll' (0 0 0) 'any'// Ressurrection
+pause 1000
+movetype 0x1f68  'backpack' 'dropscroll' (0 0 0) 'any'// Summon Air Elemental
+pause 1000
+movetype 0x1f69  'backpack' 'dropscroll' (0 0 0) 'any'// Summon Daemon
+pause 1000
+movetype 0x1f6a  'backpack' 'dropscroll' (0 0 0) 'any'// Summon Earth Elemental
+pause 1000
+movetype 0x1f6b  'backpack' 'dropscroll' (0 0 0) 'any'// Summon Fire Elemental
+pause 1000
+movetype 0x1f6c  'backpack' 'dropscroll' (0 0 0) 'any'// Summon Water Elemental
