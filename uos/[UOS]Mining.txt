@@ -1,0 +1,261 @@
+//Author: Experience
+//Title: Recalling Miner
+//Description: Recalling Miner. Must have a 1 Pickaxe or ingots.
+//You will need a book with the default rune marked right next to your storage.
+//Stand South of each Spot you want to mine
+//All Books must have 16 runes to run properly!!
+//Be sure to stock Regs before playing!
+removelist 'Runes'
+removelist 'OreBook'
+@clearjournal
+headmsg "Reminder: Have your regs stocked..."
+pause 200
+headmsg 'About 100 of each recall reg...'
+if not @findalias 'Ore Storage'
+  promptalias 'Ore Storage'
+endif
+if not @findobject 'Ore1'
+  promptalias 'Ore1'
+endif
+if not @findobject 'Ore2'
+  promptalias 'Ore2'
+endif
+//if not @findobject 'Ore3'
+// promptalias 'Ore3'
+//endif
+if not @findobject 'HomeOre'
+  promptalias 'HomeOre'
+endif
+if not listexists 'OreBook'
+  createlist 'OreBook'
+endif
+if list 'OreBook' == 0
+  pushlist 'OreBook' 'Ore1'
+  pushlist 'OreBook' 'Ore2'
+  // pushlist 'OreBook' 'Ore3'
+endif
+if @findtype '0xe86' '0' 'backpack' 'any' '2'
+  headmsg 'Pick found. Ready!'
+elseif @findtype '0x1bf2' '0' 'backpack' 'any' '2' and skill 'tinkering' > 80
+  headmsg 'resorting to Tinkering....'
+  @usetype '0x1eb8' '0' 'backpack' 'any' '2'
+  waitforgump 0x38920abd 15000
+  replygump 0x38920abd 8
+  waitforgump 0x38920abd 15000
+  replygump 0x38920abd 114
+  waitforgump 0x38920abd 15000
+  replygump 0x38920abd 114
+else
+  headmsg 'No way to mine found...'
+  stop
+endif
+if not listexists 'Runes'
+  createlist 'Runes'
+endif
+if list 'Runes' == 0
+  pushlist 'Runes' 50
+  pushlist 'Runes' 51
+  pushlist 'Runes' 52
+  pushlist 'Runes' 53
+  pushlist 'Runes' 54
+  pushlist 'Runes' 55
+  pushlist 'Runes' 56
+  pushlist 'Runes' 57
+  pushlist 'Runes' 58
+  pushlist 'Runes' 59
+  pushlist 'Runes' 60
+  pushlist 'Runes' 61
+  pushlist 'Runes' 62
+  pushlist 'Runes' 63
+  pushlist 'Runes' 64
+  pushlist 'Runes' 65
+endif
+for 0 to OreBook
+  //곡괭이 4개 이하일시 만들기
+  while  counttype 0xe86 0 backpack < 4
+    usetype 0x1eb8 0 backpack
+    useobject 0x40093258
+    waitforgump 0x7b28e708 15000
+    replygump 0x7b28e708 15
+    waitforgump 0x7b28e708 15000
+    replygump 0x7b28e708 114
+    waitforgump 0x7b28e708 15000
+    replygump 0x7b28e708 0
+    pause 1000
+    replygump 0x7b28e708 0
+    pause 500
+  endwhile
+  //팅커툴4개이
+  if counttype 0x1eb8 0 backpack < 4
+    usetype 0x1eb8 0 backpack
+    //pause 500
+    waitforgump 0x7b28e708 15000
+    replygump 0x7b28e708 15
+    waitforgump 0x7b28e708 15000
+    replygump 0x7b28e708 23
+    waitforgump 0x7b28e708 15000
+    pause 1000
+    replygump 0x7b28e708 0
+    msg '팅커4개이하라성생산'
+  endif
+  //곡괭이 4개 이하일시 만들기 끝
+  for 0 to 'Runes'
+    pause 500
+    while mana < 20
+    endwhile
+    @clearjournal
+    pause 500
+    //---axe check
+    while  counttype 0xe86 0 'backpack' < 3
+      //잉갓 100개 이하면 이동
+      useobject 0x40089cc6
+      organizer 'IngotShift'
+      pause 1000
+      //잉갓 100개 이하면 이동 끝
+      usetype 0x1eb8 0 backpack
+      waitforgump 0x7b28e708 15000
+      replygump 0x7b28e708 15
+      waitforgump 0x7b28e708 15000
+      replygump 0x7b28e708 114
+      waitforgump 0x7b28e708 15000
+      replygump 0x7b28e708 0
+      msg 도끼 만들
+    endwhile
+    msg axe making end
+    //---axe check end
+    //---toolkit check
+    //---toolkit check
+    //useobject 0x40044e15
+    //waitforgump 0x59 15000
+    //replygump 0x59 50
+    useobject OreBook[]
+    waitforgump 0x59 15000
+    replygump 0x59 Runes[]
+    pause 4000
+    if injournal 'fail' 'system'
+      @clearjournal
+      replay
+    endif
+    if injournal 'blocked' 'system'
+      @clearjournal
+      replay
+    endif
+    while not @injournal 'There is no metal here to mine' 'system'
+      //use Pick to northern tile until specified weight is reached
+      pause 300
+      usetype '0xe86' '0' 'backpack' 'any' '2'
+      waitfortarget 1000
+      targettileoffset 0 -1 0
+      pause 800
+      if @injournal "You can't mine there." "system"
+        headmsg 'Bad Rune'
+        @clearjournal
+        poplist 'Runes' 'front'
+        break
+      endif
+      // once weight is reached go home, if getting overweight, lower it
+      if weight > '390'
+        cast "Recall"
+        waitfortarget 15000
+        target! 0x4008b49f
+        pause 4000
+        msg '가방무게 때문에 오어내리러 집ㅇ로'
+        pause 1000
+        useobject 0x40088e6c
+        pause 1000
+        useobject 0x40089cc5
+        pause 500
+        organizer 'IngotShift'
+        pause 1000
+        msg '첫번째 잉갓이동'
+        //잉갓 30개이하면 보충
+        if @findtype 0x1bf2 0 backpack < 90
+          useobject 0x40088e6c
+          organizer 'IngotShift'
+          pause 1000
+        endif
+        organizer 'OreShift'
+        //잉갓 30개이하면 보충
+        if @injournal 'The spell fizzles.' 'Fizzles.'
+          cast "Recall"
+          waitfortarget 15000
+          target! 0x4008b49f
+          pause 4000
+          msg'리콜실패후 재리콜'
+          replay
+        endif
+        if @injournal 'destination not found.' 'destination'
+          cast "Recall"
+          waitfortarget 15000
+          target! 0x4008b49f
+          pause 4000
+          msg'리콜실패후 재리콜'
+        endif
+        if injournal 'fizzles' 'spell'
+          @clearjournal
+          replay
+        endif
+        //잉갓 30개이하면 보충
+        if @findtype 0x1bf2 0 backpack < 90
+          useobject 0x40088e6c
+          organizer 'IngotShift'
+          pause 1000
+        endif
+        //잉갓 30개이하면 보충
+        //put up Ore
+        organizer 'OreSh'
+        //  while @findtype '0x19b9' 'any' 'backpack' 'any' '2'
+        //  moveitem 'found' 'Ore Storage'
+        // pause 800
+        //endwhile
+        //axe check
+        if counttype 0xe86 0 'backpack' < 3
+          useobject 0x40088e6c
+          pause 500
+          useobject 0x40089cc5
+          pause 500
+          organizer 'AxeSh'
+          pause 1000
+          msg 도끼 생산
+        endif
+        //axe check end
+        while mana < 40
+        endwhile
+        //recall back to where you were
+        if mana < 25
+          headmsg 'Need mana'
+          useskill 'meditation'
+          while mana < 40
+          endwhile
+        endif
+        useobject OreBook[]
+        waitforgump 0x554b87f3 5000
+        replygump 0x554b87f3 Runes[]
+        pause 2000
+        if not @findtype '0xe86' '0' 'backpack' 'any' '2'
+          headmsg 'Out of picks'
+          replay
+        endif
+      endif
+    endwhile
+    if mana < 25
+      headmsg 'Need mana'
+      useskill 'meditation'
+      while mana < 40
+      endwhile
+    endif
+  endfor
+  poplist 'Runes' 'front'
+endfor
+//recall home so Ore container is found
+pause 1000
+if mana < 25
+  headmsg 'Need mana'
+  useskill 'meditation'
+  while mana < 40
+  endwhile
+endif
+cast 'recall'
+autotargetobject 'HomeOre'
+pause 4000
+poplist 'OreBook' 'front'
